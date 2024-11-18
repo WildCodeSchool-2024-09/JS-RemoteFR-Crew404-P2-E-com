@@ -1,0 +1,182 @@
+[
+  {
+    "id": "1",
+    "name": "Casque Bluetooth",
+    "description": "Casque sans fil avec réduction de bruit active.",
+    "price": 89.99,
+    "image": "/assets/images/casque-bluetooth.jpg",
+    "stock": 15,
+    "category": "Audio"
+  },
+  {
+    "id": "2",
+    "name": "Montre Connectée",
+    "description": "Montre connectée avec suivi des activités et notifications.",
+    "price": 120.0,
+    "image": "/assets/images/montre-connectee.jpg",
+    "stock": 30,
+    "category": "Wearable"
+  },
+  {
+    "id": "3",
+    "name": "Sac à Dos Étanche",
+    "description": "Sac à dos durable et résistant à l'eau.",
+    "price": 49.99,
+    "image": "/assets/images/sac-a-dos-etanche.jpg",
+    "stock": 20,
+    "category": "Bagagerie"
+  },
+  {
+    "id": "4",
+    "name": "Tablette Graphique",
+    "description": "Tablette graphique avec stylet de haute précision.",
+    "price": 79.99,
+    "image": "/assets/images/tablette-graphique.webp",
+    "stock": 10,
+    "category": "Informatique"
+  },
+  {
+    "id": "5",
+    "name": "Bouteille Isotherme",
+    "description": "Bouteille en acier inoxydable pour boissons chaudes ou froides.",
+    "price": 24.99,
+    "image": "/assets/images/bouteille-isotherme.webp",
+    "stock": 50,
+    "category": "Accessoires"
+  },
+  {
+    "id": "6",
+    "name": "Smartphone 5G",
+    "description": "Smartphone avec écran OLED et connectivité 5G.",
+    "price": 699.99,
+    "image": "/assets/images/smartphone-5g.webp",
+    "stock": 5,
+    "category": "Téléphonie"
+  },
+  {
+    "id": "7",
+    "name": "Enceinte Portable",
+    "description": "Enceinte Bluetooth avec basses puissantes.",
+    "price": 59.99,
+    "image": "/assets/images/enceinte-portable.png",
+    "stock": 40,
+    "category": "Audio"
+  },
+  {
+    "id": "8",
+    "name": "Caméra de Surveillance",
+    "description": "Caméra de sécurité avec vision nocturne et détection de mouvement.",
+    "price": 99.99,
+    "image": "/assets/images/camera-surveillance.jpg",
+    "stock": 25,
+    "category": "Sécurité"
+  },
+  {
+    "id": "9",
+    "name": "Clavier Mécanique",
+    "description": "Clavier avec interrupteurs mécaniques pour une frappe rapide.",
+    "price": 69.99,
+    "image": "/assets/images/clavier-mecanique.webp",
+    "stock": 30,
+    "category": "Informatique"
+  },
+  {
+    "id": "10",
+    "name": "Chargeur Sans Fil",
+    "description": "Chargeur rapide compatible Qi pour smartphone.",
+    "price": 29.99,
+    "image": "/assets/images/chargeur-sans-fil.jpg",
+    "stock": 50,
+    "category": "Accessoires"
+  },
+  {
+    "id": "11",
+    "name": "Projecteur LED",
+    "description": "Projecteur compact avec résolution Full HD.",
+    "price": 129.99,
+    "image": "/assets/images/projecteur-led.jpeg",
+    "stock": 12,
+    "category": "Multimédia"
+  },
+  {
+    "id": "12",
+    "name": "Console de Jeux Portable",
+    "description": "Console avec écran tactile et bibliothèque de jeux.",
+    "price": 199.99,
+    "image": "/assets/images/console-portable.jpg",
+    "stock": 20,
+    "category": "Jeux"
+  },
+  {
+    "id": "13",
+    "name": "Lampe de Bureau LED",
+    "description": "Lampe avec lumière ajustable et fonction de charge USB.",
+    "price": 39.99,
+    "image": "/assets/images/lampe-bureau.webp",
+    "stock": 45,
+    "category": "Maison"
+  },
+  {
+    "id": "14",
+    "name": "Appareil Photo Numérique",
+    "description": "Appareil photo compact avec capteur haute résolution.",
+    "price": 299.99,
+    "image": "/assets/images/appareil-photo.jpg",
+    "stock": 8,
+    "category": "Photographie"
+  },
+  {
+    "id": "15",
+    "name": "Tablette Android",
+    "description": "Tablette avec écran HD et batterie longue durée.",
+    "price": 149.99,
+    "image": "/assets/images/tablette-android.jpg",
+    "stock": 25,
+    "category": "Informatique"
+  },
+  {
+    "id": "16",
+    "name": "Imprimante Multifonction",
+    "description": "Imprimante avec scanner et connectivité sans fil.",
+    "price": 89.99,
+    "image": "/assets/images/imprimante.jpg",
+    "stock": 18,
+    "category": "Informatique"
+  },
+  {
+    "id": "17",
+    "name": "Aspirateur Robot",
+    "description": "Aspirateur robot intelligent avec programmation automatique.",
+    "price": 249.99,
+    "image": "/assets/images/aspirateur-robot.jpg",
+    "stock": 10,
+    "category": "Maison"
+  },
+  {
+    "id": "18",
+    "name": "Drone avec Caméra",
+    "description": "Drone compact avec caméra HD et contrôle par smartphone.",
+    "price": 159.99,
+    "image": "/assets/images/drone-camera.webp",
+    "stock": 15,
+    "category": "Loisirs"
+  },
+  {
+    "id": "19",
+    "name": "Ventilateur Portable",
+    "description": "Ventilateur rechargeable avec plusieurs vitesses.",
+    "price": 14.99,
+    "image": "/assets/images/ventilateur-portable.jpg",
+    "stock": 100,
+    "category": "Accessoires"
+  },
+  {
+    "id": "20",
+    "name": "Clé USB 128 Go",
+    "description": "Clé USB avec haute capacité de stockage.",
+    "price": 19.99,
+    "image": "/assets/images/cle-usb.jpg",
+    "stock": 75,
+    "category": "Informatique"
+  }
+]
