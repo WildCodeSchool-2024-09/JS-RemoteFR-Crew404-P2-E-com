@@ -59,7 +59,7 @@
     "description": "Enceinte Bluetooth avec basses puissantes.",
     "price": 59.99,
     "image": "/assets/images/enceinte-portable.png",
-    "stock": 40,
+    "stock": 0,
     "category": "Audio"
   },
   {
