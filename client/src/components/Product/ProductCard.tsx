@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import { Glasses } from "lucide-react";
 import type { Product } from "../../types/product";
 import ProductImage from "./ProductImage";
 import ProductPrice from "./ProductPrice";
@@ -33,8 +33,8 @@ function ProductCard({ product }: ProductCardProps) {
             className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
             type="button"
           >
-            <ShoppingCart className="w-5 h-5" />
-            Ajouter au panier
+            <Glasses className="w-5 h-5" />
+            Voir le produit
           </button>
         </div>
       </div>
