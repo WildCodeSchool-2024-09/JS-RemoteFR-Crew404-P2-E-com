@@ -121,7 +121,7 @@
     "name": "Appareil Photo Numérique",
     "description": "Appareil photo compact avec capteur haute résolution.",
     "price": 299.99,
-    "image": "/assets/images/appareil-photo.jpg",
+    "image": "/assets/images/appareil-photo.webp",
     "stock": 8,
     "category": "Photographie"
   },
