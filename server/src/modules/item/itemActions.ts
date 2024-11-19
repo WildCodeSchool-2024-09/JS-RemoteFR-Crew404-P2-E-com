@@ -45,4 +45,20 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read };
+const categories: RequestHandler = async (req, res, next) => {
+  try {
+    // Fetch all categories
+    const categories = api.map((item) => item.category);
+
+    // Remove duplicate categories
+    const uniqueCategories = [...new Set(categories)];
+
+    // Respond with the categories in JSON format
+    res.json(uniqueCategories);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+export default { browse, read, categories };
