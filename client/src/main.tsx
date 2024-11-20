@@ -2,12 +2,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import "./index.css";
 
 /* ************************************************************************* */
 
 // Import the main app component
 import App from "./App";
+import Product from "./components/UniqueProduct";
 import Layout from "./pages/Layout";
 
 // Import additional components for new routes
@@ -27,6 +29,17 @@ const router = createBrowserRouter([
       {
         path: "/", // The root path
         element: <App />,
+      },
+      {
+        path: "/products/:id",
+        element: <Product />,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `http://localhost:3310/api/items/${params.id}`,
+          );
+          const product = await response.json();
+          return { product };
+        },
       },
     ],
   },
