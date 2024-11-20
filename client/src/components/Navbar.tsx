@@ -2,8 +2,10 @@ import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import { useCart } from "../context/CartContext";
 function Navbar() {
   const [categories, setCategories] = useState([]);
+  const { nbCart } = useCart();
 
   // Fetch all categories on initial render
   useEffect(() => {
@@ -47,13 +49,24 @@ function Navbar() {
             </select>
           </div>
         </nav>
-        <button
-          className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+        <Link
+          to="/cart"
+          className="relative inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
           type="button"
         >
           Panier
+          <span className="absolute top-0 right-0 inline-flex items-center gap-x-1.5 rounded-full bg-indigo-100 px-1.5 py-0.5 text-xs font-medium text-indigo-700 transform translate-x-1/2 -translate-y-1/2">
+            <svg
+              viewBox="0 0 6 6"
+              aria-hidden="true"
+              className="size-1.5 fill-indigo-500"
+            >
+              <circle r={3} cx={3} cy={3} />
+            </svg>
+            {nbCart}
+          </span>
           <ShoppingCart className="w-5 h-5 ml-2" />
-        </button>
+        </Link>
       </div>
     </header>
   );
