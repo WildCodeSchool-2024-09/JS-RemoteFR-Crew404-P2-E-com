@@ -1,13 +1,15 @@
-import { Glasses } from "lucide-react";
+import { Glasses, ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { Product } from "../../types/product";
 import ProductImage from "./ProductImage";
 import ProductPrice from "./ProductPrice";
 
 interface ProductCardProps {
   product: Product;
+  isBuy?: boolean;
 }
 
-function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product, isBuy }: ProductCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 max-w-2xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -29,13 +31,25 @@ function ProductCard({ product }: ProductCardProps) {
 
           <p className="text-gray-600 leading-relaxed">{product.description}</p>
 
-          <button
-            className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
-            type="button"
-          >
-            <Glasses className="w-5 h-5" />
-            Voir le produit
-          </button>
+          {!isBuy ? (
+            <Link
+              to={`/products/${product.id}`}
+              className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+              type="button"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              Acheter
+            </Link>
+          ) : (
+            <Link
+              to={`/products/${product.id}`}
+              className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+              type="button"
+            >
+              <Glasses className="w-5 h-5" />
+              Voir le produit
+            </Link>
+          )}
         </div>
       </div>
     </div>
