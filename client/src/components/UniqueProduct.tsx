@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import type { Product } from "../types/product";
 import ProductCard from "./Product/ProductCard";
-
 function UniqueProduct() {
   const { product } = useLoaderData() as { product: Product };
   return (

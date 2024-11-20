@@ -1,36 +1,7 @@
+import { useCart } from "../context/CartContext";
 import CartInfo from "./Cart/CartInfo";
 function Cart() {
-  const carts = [
-    {
-      id: "1",
-      name: "Casque Bluetooth",
-      description: "Casque sans fil avec réduction de bruit active.",
-      price: 89.99,
-      image: "/assets/images/casque-bluetooth.jpg",
-      stock: 15,
-      category: "Audio",
-    },
-    {
-      id: "2",
-      name: "Montre Connectée",
-      description:
-        "Montre connectée avec suivi des activités et notifications.",
-      price: 120.0,
-      image: "/assets/images/montre-connectee.jpg",
-      stock: 30,
-      category: "Wearable",
-    },
-    {
-      id: "3",
-      name: "Sac à Dos Étanche",
-      description: "Sac à dos durable et résistant à l'eau.",
-      price: 49.99,
-      image: "/assets/images/sac-a-dos-etanche.jpg",
-      stock: 20,
-      category: "Bagagerie",
-    },
-  ];
-
+  const { carts, totalPrice } = useCart();
   return (
     <section>
       <section className="py-24 relative">
@@ -49,7 +20,7 @@ function Cart() {
 
             <div className="flex items-center justify-between gap-5 ">
               <h6 className="font-manrope font-bold text-3xl lead-10 text-indigo-600">
-                $220
+                {totalPrice}€
               </h6>
             </div>
           </div>

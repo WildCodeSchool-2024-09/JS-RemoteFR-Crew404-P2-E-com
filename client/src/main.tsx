@@ -10,7 +10,9 @@ import "./index.css";
 // Import the main app component
 import App from "./App";
 import Cart from "./components/Cart";
+import Notification from "./components/Notification";
 import Product from "./components/UniqueProduct";
+import { CartProvider } from "./context/CartContext";
 import Layout from "./pages/Layout";
 
 // Import additional components for new routes
@@ -62,7 +64,10 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+      <Notification />
+    </CartProvider>
   </StrictMode>,
 );
 

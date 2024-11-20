@@ -1,6 +1,8 @@
 import { Trash } from "lucide-react";
+import { useCart } from "../../context/CartContext";
 import type { Product } from "../../types/product";
 function CartInfo({ product }: { product: Product }) {
+  const { removeFromCart } = useCart();
   return (
     <div className="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-lg:max-w-lg max-lg:mx-auto gap-y-4">
       <div className="col-span-12 lg:col-span-2 img box">
@@ -18,6 +20,7 @@ function CartInfo({ product }: { product: Product }) {
           <button
             className="rounded-full group flex items-center justify-center focus-within:outline-red-500"
             type="button"
+            onClick={() => removeFromCart(product.id)}
           >
             <Trash className="w-6 h-6 text-red-500 group-hover:text-red-600 transition-all duration-500" />
           </button>
