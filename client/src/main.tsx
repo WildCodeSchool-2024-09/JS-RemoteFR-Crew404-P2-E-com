@@ -9,6 +9,7 @@ import "./index.css";
 
 // Import the main app component
 import App from "./App";
+import Cart from "./components/Cart";
 import Product from "./components/UniqueProduct";
 import Layout from "./pages/Layout";
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
           const product = await response.json();
           return { product };
         },
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
