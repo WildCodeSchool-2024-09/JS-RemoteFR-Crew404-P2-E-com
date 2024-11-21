@@ -1,7 +1,34 @@
+import { useEffect, useState } from "react";
+import ProductCard from "./components/Product/ProductCard";
+import type { Product } from "./types/product";
 function App() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchData = () => {
+      // try {
+      //   const response = await fetch("http://localhost:3310/api/items");
+      //   const data = await response.json();
+      //   setProducts(data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
+      fetch("http://localhost:3310/api/items")
+        .then((response) => response.json())
+        .then((data) => setProducts(data))
+        .catch((err) => console.error(err));
+    };
+    fetchData();
+  }, []);
+
   return (
     <section>
-      <h1 className="bg-lime-700">Je suis le composant : `App`</h1>
+      <h1 className="text-3xl font-semibold text-gray-900">Products</h1>
+      <div className="grid grid-cols-2 gap-8 mt-6">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </section>
   );
 }
