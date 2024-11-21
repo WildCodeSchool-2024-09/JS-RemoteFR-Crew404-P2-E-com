@@ -8,6 +8,8 @@ import "./index.css";
 
 // Import the main app component
 import App from "./App";
+import Product from "./components/Product";
+import Layout from "./pages/Layout";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -21,8 +23,17 @@ import App from "./App";
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
-    path: "/", // The root path
-    element: <App />, // Renders the App component for the home page
+    element: <Layout />, // Renders the App component for the home page
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/product/:id",
+        element: <Product />,
+      },
+    ],
   },
   // Try adding a new route! For example, "/about" with an About component
 ]);
