@@ -8,7 +8,7 @@ import "./index.css";
 
 // Import the main app component
 import App from "./App";
-import Product from "./components/Product";
+import DetailProduct from "./components/DetailProduct";
 import Layout from "./pages/Layout";
 
 // Import additional components for new routes
@@ -30,8 +30,15 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "/product/:id",
-        element: <Product />,
+        path: "/products/:id",
+        element: <DetailProduct />,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `http://localhost:3310/api/items/${params.id}`,
+          );
+          const data = await response.json();
+          return data;
+        },
       },
     ],
   },
