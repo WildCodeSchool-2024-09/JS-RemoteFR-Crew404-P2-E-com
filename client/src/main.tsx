@@ -3,12 +3,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /* ************************************************************************* */
 
 // Import the main app component
 import App from "./App";
+import Cart from "./components/Cart";
 import DetailProduct from "./components/DetailProduct";
+import { CartProvider } from "./contexts/CartContext";
 import Layout from "./pages/Layout";
 
 // Import additional components for new routes
@@ -40,6 +44,10 @@ const router = createBrowserRouter([
           return data;
         },
       },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
     ],
   },
   // Try adding a new route! For example, "/about" with an About component
@@ -56,7 +64,10 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </CartProvider>
   </StrictMode>,
 );
 

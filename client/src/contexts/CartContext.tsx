@@ -1,9 +1,12 @@
 import { type ReactNode, createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import type { Product } from "../types/product";
 
 type CartContextType = {
   carts: Product[];
   addToCart: (product: Product) => void;
+  deleteToCart: (id: string) => void;
+  nbCart: number;
 };
 
 type ChildrenType = {
@@ -14,13 +17,21 @@ const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: ChildrenType) {
   const [carts, setCarts] = useState<Product[]>([]);
+  const notify = () => toast.error("Tu as bien supprimé le produit 😭");
 
   const addToCart = (product: Product) => {
     setCarts([...carts, product]);
   };
 
+  const deleteToCart = (id: string) => {
+    setCarts(carts.filter((produit) => produit.id !== id));
+    notify();
+  };
+
   return (
-    <CartContext.Provider value={{ carts, addToCart }}>
+    <CartContext.Provider
+      value={{ carts, addToCart, deleteToCart, nbCart: carts.length }}
+    >
       {children}
     </CartContext.Provider>
   );
