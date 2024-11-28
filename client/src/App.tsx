@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./components/Product/ProductCard";
+import { fetchData } from "./helpers/fetch";
 import type { Product } from "./types/product";
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch("http://localhost:3310/api/items");
-      const data = await response.json();
+    const fetchDataAsync = async () => {
+      const data = await fetchData("items");
       setProducts(data);
     };
-
-    fetchProducts();
+    fetchDataAsync();
   }, []);
 
   return (

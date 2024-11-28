@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { useCart } from "../context/CartContext";
+import { fetchData } from "../helpers/fetch";
 function Navbar() {
   const [categories, setCategories] = useState([]);
   const { nbCart } = useCart();
@@ -10,12 +11,11 @@ function Navbar() {
   // Fetch all categories on initial render
   useEffect(() => {
     // Fetch all categories
-    const fetchCategories = async () => {
-      const res = await fetch("http://localhost:3310/api/categories");
-      const data = await res.json();
+    const fetchDataAsync = async () => {
+      const data = await fetchData("categories");
       setCategories(data);
     };
-    fetchCategories();
+    fetchDataAsync();
   }, []);
 
   return (

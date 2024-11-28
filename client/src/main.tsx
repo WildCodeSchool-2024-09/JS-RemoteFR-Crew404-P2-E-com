@@ -13,6 +13,7 @@ import Cart from "./components/Cart";
 import Notification from "./components/Notification";
 import Product from "./components/UniqueProduct";
 import { CartProvider } from "./context/CartContext";
+import { fetchData } from "./helpers/fetch";
 import Layout from "./pages/Layout";
 
 // Import additional components for new routes
@@ -37,10 +38,7 @@ const router = createBrowserRouter([
         path: "/products/:id",
         element: <Product />,
         loader: async ({ params }) => {
-          const response = await fetch(
-            `http://localhost:3310/api/items/${params.id}`,
-          );
-          const product = await response.json();
+          const [product] = await fetchData(`items/${params.id}`);
           return { product };
         },
       },
