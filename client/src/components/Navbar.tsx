@@ -29,6 +29,15 @@ function Navbar() {
           <span className="ml-3 text-xl">404 - E SHOP!</span>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <Link to="/login" className="mr-5 hover:text-gray-900">
+            Connexion
+          </Link>
+          <Link
+            to="/signin"
+            className="mr-5 hover:bg-indigo-700 text-white bg-indigo-500 px-8 py-4 "
+          >
+            Inscription
+          </Link>
           <Link to="/" className="mr-5 hover:text-gray-900">
             Home
           </Link>

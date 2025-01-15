@@ -13,6 +13,13 @@ router.get("/api/items", itemActions.browse);
 router.get("/api/items/:id", itemActions.read);
 router.get("/api/categories", itemActions.categories);
 
+import authMiddleware from "./middlewares/authMiddleware";
+import authActions from "./modules/auth/authActions";
+/** login / register */
+
+router.post("/api/login", authMiddleware.isRegistered, authActions.login);
+router.post("/api/register", authActions.register);
+
 /* ************************************************************************* */
 
 export default router;

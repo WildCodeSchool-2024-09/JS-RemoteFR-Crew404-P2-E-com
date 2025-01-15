@@ -15,6 +15,8 @@ import Product from "./components/UniqueProduct";
 import { CartProvider } from "./context/CartContext";
 import { fetchData } from "./helpers/fetch";
 import Layout from "./pages/Layout";
+import Login from "./pages/Login";
+import SignIn from "./pages/Signin";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/", // The root path
         element: <App />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
       },
       {
         path: "/products/:id",
