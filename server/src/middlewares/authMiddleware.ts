@@ -1,3 +1,4 @@
+import * as argon2 from "argon2";
 import type { RequestHandler } from "express";
 
 import authRepository from "../modules/auth/authRepository";
@@ -5,19 +6,33 @@ import authRepository from "../modules/auth/authRepository";
 const isRegistered: RequestHandler = async (req, res, next) => {
   const user = await authRepository.read(req.body.email);
 
+  console.info(user);
+
   if (!user) {
     res.status(401).json({ message: "Invalid email or password" });
     return;
   }
 
-  if (user.password !== req.body.password) {
-    res.status(401).json({ message: "C'est derrick" });
+  if (await argon2.verify(user.password, req.body.password)) {
+    console.info("Password is correct");
+
+    req.user = user;
+    next();
+  } else {
+    res.status(401).json({ message: "Invalid email or password" });
     return;
   }
-
-  req.user = user;
-
-  next();
 };
 
-export default { isRegistered };
+const hashPwd: RequestHandler = async (req, res, next) => {
+  try {
+    const hash = await argon2.hash(req.body.password);
+    req.body.password = hash;
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export default { isRegistered, hashPwd };

@@ -1,6 +1,51 @@
+import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SignIn() {
+  const [register, setRegister] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setRegister((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    /**
+     * On a testé avec axios, point faible, trop fort.
+     */
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/register`,
+      register,
+    );
+
+    console.info(response.data);
+
+    /**
+     * On a testé avec fetch, point fort, trop faible.
+     */
+    // const response = await fetch("http://localhost:3310/api/register", {
+    // 	method: "POST",
+    // 	headers: {
+    // 		"Content-Type": "application/json",
+    // 	},
+    // 	body: JSON.stringify(register),
+    // });
+
+    // const data = await response.json();
+
+    // console.log(data);
+  };
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -17,7 +62,7 @@ function SignIn() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="email"
@@ -31,6 +76,7 @@ function SignIn() {
                     name="email"
                     type="email"
                     required
+                    onChange={handleChange}
                     autoComplete="email"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
@@ -49,6 +95,7 @@ function SignIn() {
                     id="password"
                     name="password"
                     type="password"
+                    onChange={handleChange}
                     required
                     autoComplete="current-password"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"

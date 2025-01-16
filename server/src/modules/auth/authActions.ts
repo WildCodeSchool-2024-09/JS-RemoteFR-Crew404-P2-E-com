@@ -17,10 +17,11 @@ const register: RequestHandler = async (req, res, next) => {
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    // Respond with the user in JSON format
-    res.status(200).json(req.user);
+    if (req.user) {
+      const { password, ...safeUser } = req.user;
+      res.status(200).json(safeUser);
+    }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
