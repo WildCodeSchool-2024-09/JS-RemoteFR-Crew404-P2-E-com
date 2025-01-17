@@ -1,5 +1,23 @@
+import path from "node:path";
 import * as argon2 from "argon2";
 import type { RequestHandler } from "express";
+import multer from "multer";
+
+const configMulter = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = `${Date.now()}-${Math.round(
+      Math.random() * 99999999,
+    )};`;
+
+    req.body.avatar = uniqueSuffix + path.extname(file.originalname);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+
+const uploads = multer({ storage: configMulter });
 
 import authRepository from "../modules/auth/authRepository";
 
@@ -26,8 +44,11 @@ const isRegistered: RequestHandler = async (req, res, next) => {
 
 const hashPwd: RequestHandler = async (req, res, next) => {
   try {
-    const hash = await argon2.hash(req.body.password);
-    req.body.password = hash;
+    const register = JSON.parse(req.body.register);
+
+    const hash = await argon2.hash(register.password);
+    register.password = hash;
+    req.body = { ...register, avatar: req.body.avatar };
     next();
   } catch (error) {
     console.error(error);
@@ -35,4 +56,4 @@ const hashPwd: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { isRegistered, hashPwd };
+export default { isRegistered, hashPwd, uploads };

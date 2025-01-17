@@ -18,7 +18,12 @@ import authActions from "./modules/auth/authActions";
 /** login / register */
 
 router.post("/api/login", authMiddleware.isRegistered, authActions.login);
-router.post("/api/register", authMiddleware.hashPwd, authActions.register);
+router.post(
+  "/api/register",
+  authMiddleware.uploads.single("avatar"),
+  authMiddleware.hashPwd,
+  authActions.register,
+);
 
 /* ************************************************************************* */
 
