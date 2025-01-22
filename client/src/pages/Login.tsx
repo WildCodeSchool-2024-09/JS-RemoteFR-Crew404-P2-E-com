@@ -1,12 +1,15 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import api from "../helpers/api";
 
 function Login() {
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
+
+  const { handleLogin } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,10 +26,8 @@ function Login() {
     /**
      * On a testé avec axios, point faible, trop fort.
      */
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/login`,
-      login,
-    );
+    const response = await api.post("/api/login", login);
+    handleLogin(response.data);
 
     console.info(response.data);
 

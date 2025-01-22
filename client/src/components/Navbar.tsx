@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { useCart } from "../context/CartContext";
 import { fetchData } from "../helpers/fetch";
+
+import { useAuth } from "../context/AuthContext";
+
 function Navbar() {
   const [categories, setCategories] = useState([]);
   const { nbCart } = useCart();
+  const { user, handleLogout } = useAuth();
 
   // Fetch all categories on initial render
   useEffect(() => {
@@ -29,15 +33,31 @@ function Navbar() {
           <span className="ml-3 text-xl">404 - E SHOP!</span>
         </Link>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <Link to="/login" className="mr-5 hover:text-gray-900">
-            Connexion
-          </Link>
-          <Link
-            to="/signin"
-            className="mr-5 hover:bg-indigo-700 text-white bg-indigo-500 px-8 py-4 "
-          >
-            Inscription
-          </Link>
+          {user ? (
+            <>
+              <p>Bonjour {user.email}</p>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="mr-5 hover:text-gray-900"
+              >
+                logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="mr-5 hover:text-gray-900">
+                Connexion
+              </Link>
+              <Link
+                to="/signin"
+                className="mr-5 hover:bg-indigo-700 text-white bg-indigo-500 px-8 py-4 "
+              >
+                Inscription
+              </Link>
+            </>
+          )}
+
           <Link to="/" className="mr-5 hover:text-gray-900">
             Home
           </Link>

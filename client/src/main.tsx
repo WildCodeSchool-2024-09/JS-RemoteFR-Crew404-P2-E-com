@@ -12,11 +12,16 @@ import App from "./App";
 import Cart from "./components/Cart";
 import Notification from "./components/Notification";
 import Product from "./components/UniqueProduct";
-import { CartProvider } from "./context/CartContext";
 import { fetchData } from "./helpers/fetch";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import SignIn from "./pages/Signin";
+
+import { AuthProvider } from "./context/AuthContext";
+/**
+ * Context
+ */
+import { CartProvider } from "./context/CartContext";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -72,10 +77,12 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <CartProvider>
-      <RouterProvider router={router} />
-      <Notification />
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+        <Notification />
+      </CartProvider>
+    </AuthProvider>
   </StrictMode>,
 );
 

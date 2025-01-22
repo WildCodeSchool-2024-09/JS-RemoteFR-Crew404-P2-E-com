@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../helpers/api";
 
 function SignIn() {
   const [register, setRegister] = useState({
@@ -39,10 +39,7 @@ function SignIn() {
     /**
      * On a testé avec axios, point faible, trop fort.
      */
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/register`,
-      formData,
-    );
+    const response = await api.post("/api/register", formData);
 
     console.info(response.data);
 
