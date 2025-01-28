@@ -10,7 +10,7 @@ const configMulter = multer.diskStorage({
   filename: (req, file, cb) => {
     const uniqueSuffix = `${Date.now()}-${Math.round(
       Math.random() * 99999999,
-    )};`;
+    )}`;
 
     req.body.avatar = uniqueSuffix + path.extname(file.originalname);
     cb(null, uniqueSuffix + path.extname(file.originalname));
@@ -24,21 +24,32 @@ import authRepository from "../modules/auth/authRepository";
 const isRegistered: RequestHandler = async (req, res, next) => {
   const user = await authRepository.read(req.body.email);
 
-  console.info(user);
-
   if (!user) {
     res.status(401).json({ message: "Invalid email or password" });
     return;
   }
 
-  if (await argon2.verify(user.password, req.body.password)) {
-    console.info("Password is correct");
+  req.user = user;
+  next();
+};
+
+const login: RequestHandler = async (req, res, next) => {
+  try {
+    const user = await authRepository.read(req.body.email);
+    if (!user) {
+      res.status(401).json({ message: "Invalid email or password" });
+      return;
+    }
+
+    if (!(await argon2.verify(user.password, req.body.password))) {
+      res.status(401).json({ message: "Invalid email or password" });
+      return;
+    }
 
     req.user = user;
     next();
-  } else {
-    res.status(401).json({ message: "Invalid email or password" });
-    return;
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -56,4 +67,4 @@ const hashPwd: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { isRegistered, hashPwd, uploads };
+export default { isRegistered, hashPwd, uploads, login };

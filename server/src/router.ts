@@ -17,12 +17,23 @@ import authMiddleware from "./middlewares/authMiddleware";
 import authActions from "./modules/auth/authActions";
 /** login / register */
 
-router.post("/api/login", authMiddleware.isRegistered, authActions.login);
+router.post("/api/login", authMiddleware.login, authActions.login);
 router.post(
   "/api/register",
   authMiddleware.uploads.single("avatar"),
   authMiddleware.hashPwd,
   authActions.register,
+);
+router.post(
+  "/api/forgot-password",
+  authMiddleware.isRegistered,
+  authActions.forgotPassword,
+);
+
+router.post(
+  "/api/reset-password",
+  authMiddleware.isRegistered,
+  authActions.resetPassword,
 );
 
 /* ************************************************************************* */

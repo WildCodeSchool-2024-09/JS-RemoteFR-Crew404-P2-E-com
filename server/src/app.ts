@@ -20,7 +20,7 @@ const app = express();
 
 import cors from "cors";
 
-app.use(cors({ origin: ["http://localhost:3000"] }));
+app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 
 // If you need to allow extra origins, you can add something like this:
 

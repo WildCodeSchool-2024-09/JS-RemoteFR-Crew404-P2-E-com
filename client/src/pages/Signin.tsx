@@ -23,17 +23,14 @@ function SignIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!imageFile) {
-      alert("OUps, tu nas pas dimage");
-      return;
-    }
-
     /**
      *   Je dois faire une étape pour push mon image sur le reseau
      */
 
     const formData = new FormData();
-    formData.append("avatar", imageFile);
+    if (imageFile) {
+      formData.append("avatar", imageFile);
+    }
     formData.append("register", JSON.stringify(register));
 
     /**
@@ -110,7 +107,6 @@ function SignIn() {
                     name="avatar"
                     type="file"
                     accept="image/png, image/jpeg, image/jpg"
-                    required
                     onChange={handleFileChange}
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
