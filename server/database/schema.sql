@@ -3,7 +3,7 @@ create table user (
   id int unsigned primary key auto_increment not null,
   email varchar(255) not null unique,
   password varchar(255) not null,
-  avatar VARCHAR(255) DEFAULT "/assets/default/avatar.jpg"
+  avatar VARCHAR(255)  
 );
 
 create table reset_password (
@@ -14,5 +14,5 @@ create table reset_password (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-# USER : tony@lebg.com / 
-insert into user (email, password) values ('tony@lebg.com', "$argon2id$v=19$m=65536,t=3,p=4$XegqmzpC0SQK5Lz9Tsti5Q$eRhyVitXMxgDDsidXyVa/kL+JzRhJXa3phVlEe0TrtU");
+# USER : tony@lebg.com / azerty
+insert into user (email, password, avatar) values ('tony@lebg.com', "$argon2id$v=19$m=65536,t=3,p=4$XegqmzpC0SQK5Lz9Tsti5Q$eRhyVitXMxgDDsidXyVa/kL+JzRhJXa3phVlEe0TrtU", "/assets/default/avatar.jpg");
