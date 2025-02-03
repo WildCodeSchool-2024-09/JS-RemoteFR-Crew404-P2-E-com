@@ -12,9 +12,17 @@ import App from "./App";
 import Cart from "./components/Cart";
 import Notification from "./components/Notification";
 import Product from "./components/UniqueProduct";
-import { CartProvider } from "./context/CartContext";
 import { fetchData } from "./helpers/fetch";
 import Layout from "./pages/Layout";
+import Login from "./pages/Login";
+import SignIn from "./pages/Signin";
+
+import { AuthProvider } from "./context/AuthContext";
+/**
+ * Context
+ */
+import { CartProvider } from "./context/CartContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -35,6 +43,14 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
         path: "/products/:id",
         element: <Product />,
         loader: async ({ params }) => {
@@ -43,8 +59,13 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/cart",
-        element: <Cart />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/cart",
+            element: <Cart />,
+          },
+        ],
       },
     ],
   },
@@ -62,10 +83,12 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <CartProvider>
-      <RouterProvider router={router} />
-      <Notification />
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+        <Notification />
+      </CartProvider>
+    </AuthProvider>
   </StrictMode>,
 );
 
