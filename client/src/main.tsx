@@ -22,6 +22,7 @@ import { AuthProvider } from "./context/AuthContext";
  * Context
  */
 import { CartProvider } from "./context/CartContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -58,8 +59,13 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/cart",
-        element: <Cart />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/cart",
+            element: <Cart />,
+          },
+        ],
       },
     ],
   },
