@@ -23,13 +23,17 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    /**
-     * On a testé avec axios, point faible, trop fort.
-     */
-    const response = await api.post("/api/login", login);
-    handleLogin(response.data);
+    try {
+      /**
+       * On a testé avec axios, point faible, trop fort.
+       */
+      const response = await api.post("/api/login", login);
+      handleLogin(response.data);
 
-    console.info(response.data);
+      console.info(response.data);
+    } catch (error) {
+      console.error("Error de BG:", error);
+    }
 
     /**
      * On a testé avec fetch, point fort, trop faible.
@@ -127,12 +131,12 @@ function Login() {
                 </div>
 
                 <div className="text-sm/6">
-                  <a
-                    href="!#"
+                  <Link
+                    to="/forgot-password"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
 

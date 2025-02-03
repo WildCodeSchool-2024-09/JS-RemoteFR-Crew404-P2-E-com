@@ -22,6 +22,8 @@ import { AuthProvider } from "./context/AuthContext";
  * Context
  */
 import { CartProvider } from "./context/CartContext";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 // Import additional components for new routes
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
       },
       {
         path: "/signin",
