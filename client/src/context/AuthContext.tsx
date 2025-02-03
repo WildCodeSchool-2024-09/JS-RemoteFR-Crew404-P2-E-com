@@ -4,6 +4,7 @@ type AuthContextType = {
   user: User | null;
   handleLogin: (user: User) => void;
   handleLogout: () => void;
+  isLogged: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -16,23 +17,28 @@ type User = {
   id: number;
   email: string;
   avatar: string;
+  role: string;
 };
 
 export function AuthProvider({ children }: ChildrenType) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLogged, setIsLogged] = useState(false);
 
   const handleLogin = (user: User) => {
     setUser(user);
+    setIsLogged(true);
   };
 
   const handleLogout = () => {
     setUser(null);
+    setIsLogged(false);
   };
 
   return (
     <AuthContext.Provider
       value={{
         user,
+        isLogged,
         handleLogin,
         handleLogout,
       }}
